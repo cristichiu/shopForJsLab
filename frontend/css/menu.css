@@ -1,0 +1,13 @@
+.menu { width: 100%; align-items: center; font-size: clamp(1.5rem, 2.2vw, 2rem); color: var(--color-text); }
+    .menu .up { display: flex; justify-content: space-around; align-items: center; padding: 1rem; position: relative; background: transparent; }
+        .menu .up div, .menu .up a { display: flex; gap: 1.5rem; }
+            .menu .up .links a { text-decoration: none; color: var(--color-text); }
+    .menu .down { display: flex; justify-content: space-around; align-items: center; padding: 1rem; background: var(--color-menu-soft); }
+        .menu .down input { width: clamp(200px, 60vw, 900px); background: transparent; padding: .5rem 1rem; border: 1px solid white; color: var(--color-text) } 
+        .menu .down div, .menu .down a { display: flex; align-items: center }
+            .menu .down .icons { display: flex; gap: 1rem; }
+            .menu .down .upMenu { display: none }
+@media (max-width: 650px) {
+    .menu .up .auth { display: none }
+    .menu .up .logo { display: none }
+}

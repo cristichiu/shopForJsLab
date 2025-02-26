@@ -1,0 +1,16 @@
+body {
+    --color-background: rgb(50,50,57);
+    --color-background-soft: rgba(30,30,34, .1);
+    --color-background-line: rgb(10, 10, 14);
+    --color-menu: rgb(30,30,34);
+    --color-menu-soft: rgba(30,30,34, .5);
+    --color-text: white;
+    --color-text-soft: rgba(255, 255, 255, .3);
+    --color-shadow-light: rgba(255, 255, 255, .5);
+    --color-shadow-dark: rgba(0, 0, 0, .5);
+    --color-shadow-pulse1: rgba(255, 255, 255, 0);
+    --color-shadow-pulse2: rgba(255, 255, 255, .4);
+    --color-text-accent: red;
+    --color-text-ok: #457003;
+    --color-text-link: #a3a3a3;
+}
