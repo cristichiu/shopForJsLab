@@ -2,8 +2,11 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const cors = require("cors")
 
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 const graphqlSchema = require("./module/graphqlSchema.js")
-const graphqlRoot = require("./module/graphqlRoot.js")
+const graphqlRoot = require("./rootValue/index.js")(prisma)
 const authMiddleware = require("./middleware/auth.js")
 const upload = require("./module/multer.js")
 
@@ -30,7 +33,7 @@ app.use('/graphql', graphqlHTTP((req) => ({
 })));
 
 app.use("/test", (req, res) => {
-    console.log(req.body)
+    console.log(req)
 })
 
 app.listen(5000, () => {

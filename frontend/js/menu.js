@@ -1,10 +1,3 @@
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-  return null;
-}
-
 const menuHtml = () => {
     return `
 <div class="up">
@@ -38,17 +31,11 @@ const authContext = document.getElementById("authContext")
 
 axios.post('http://localhost:5000/graphql', {
     query: `
-query {
-    user {
-        username
-    }
-}
-`
-},{
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${getCookie("authToken")}`
-    }
+        query {
+            user {
+                username
+            }
+        }`
 }).then(response => {
     if(response.data.data.user == null) return
     authContext.innerHTML = response.data.data.user.username

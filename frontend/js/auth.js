@@ -55,14 +55,12 @@ function registerMethod() {
         return
     }
     const query = `
-mutation {
-    register(username: "${username.value}", password: "${password.value}", verifyPass: "${verifyPass.value}") {
-        id, token
-    }
-}`
-    axios.post('http://localhost:5000/graphql', { query },{
-        headers: { 'Content-Type': 'application/json' }
-    }).then(response => {
+        mutation {
+            register(username: "${username.value}", password: "${password.value}", verifyPass: "${verifyPass.value}") {
+                id, token
+            }
+        }`
+    axios.post('http://localhost:5000/graphql', { query }).then(response => {
         if(response.data.data.register == null) {
             authError.innerText = "User cu asa nume deja exista."
             return
@@ -77,14 +75,12 @@ function loginMethod() {
         return
     }
     const query = `
-mutation {
-    login(username: "${username.value}", password: "${password.value}") {
-        id, token
-    }
-}`
-    axios.post('http://localhost:5000/graphql', { query },{
-        headers: { 'Content-Type': 'application/json' }
-    }).then(response => {
+        mutation {
+            login(username: "${username.value}", password: "${password.value}") {
+                id, token
+            }
+        }`
+    axios.post('http://localhost:5000/graphql', { query }).then(response => {
         if(response.data.data.login == null) {
             authError.innerText = "Username sau password nevalid."
             return

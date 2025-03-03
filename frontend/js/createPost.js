@@ -17,10 +17,7 @@ async function createPost() {
     }
 
     const response = await axios.post("http://localhost:5000/uploads", formData, {
-        headers: {
-            "Content-Type": "multipart/form-data", // Setăm tipul de conținut
-            'Authorization': `bearer ${getCookie("authToken")}`
-        },
+        headers: { "Content-Type": "multipart/form-data" },
     });
 
     const img = response.data.map(img => `{ path: "${img.path}" }`).join(", ")
@@ -36,12 +33,7 @@ mutation {
     }
 }`
 
-    axios.post('http://localhost:5000/graphql', { query },{
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `bearer ${getCookie("authToken")}`
-        }
-    }).then(response => {
+    axios.post('http://localhost:5000/graphql', { query }).then(response => {
         console.log(response.data.data)
     }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
 }

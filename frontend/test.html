@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grid Produse - Dark Mode</title>
+  <style>
+    /* Definirea variabilelor pentru dark mode */
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --text-color: #e0e0e0;
+      --accent-color: #bb86fc;
+      --button-bg: #bb86fc;
+      --button-text: #121212;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* Grid-ul container */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* Stilul card-urilor de produs */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card-content {
+      padding: 15px;
+      flex: 1;
+    }
+
+    .card-title {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .card-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px 15px;
+    }
+
+    .card-buttons button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+    }
+
+    .buy-button:hover {
+      background-color: #9b68db;
+    }
+
+    .fav-button {
+      background-color: transparent;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .fav-button:hover {
+      background-color: var(--accent-color);
+      color: var(--button-text);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Exemplu de card de produs -->
+    <div class="card">
+      <img src="http://localhost:5000/uploads/17140566207005.jpg" alt="Produs">
+      <div class="card-content">
+        <h3 class="card-title">Titlu Produs 1</h3>
+        <p class="card-description">Aceasta este o scurtă descriere a produsului 1, evidențiind principalele caracteristici.</p>
+      </div>
+      <div class="card-buttons">
+        <button class="buy-button">Cumpără</button>
+        <button class="fav-button">Preferat</button>
+      </div>
+    </div>
+    
+    <!-- Poți repeta card-ul pentru mai multe produse -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Produs">
+      <div class="card-content">
+        <h3 class="card-title">Titlu Produs 2</h3>
+        <p class="card-description">Descriere succintă pentru produsul 2, explicând beneficiile acestuia.</p>
+      </div>
+      <div class="card-buttons">
+        <button class="buy-button">Cumpără</button>
+        <button class="fav-button">Preferat</button>
+      </div>
+    </div>
+    
+    <!-- Adaugă câte card-uri sunt necesare -->
+<div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Produs">
+      <div class="card-content">
+        <h3 class="card-title">Titlu Produs 1</h3>
+        <p class="card-description">Aceasta este o scurtă descriere a produsului 1, evidențiind principalele caracteristici.</p>
+      </div>
+      <div class="card-buttons">
+        <button class="buy-button">Cumpără</button>
+        <button class="fav-button">Preferat</button>
+      </div>
+    </div>
+<div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Produs">
+      <div class="card-content">
+        <h3 class="card-title">Titlu Produs 1</h3>
+        <p class="card-description">Aceasta este o scurtă descriere a produsului 1, evidențiind principalele caracteristici.</p>
+      </div>
+      <div class="card-buttons">
+        <button class="buy-button">Cumpără</button>
+        <button class="fav-button">Preferat</button>
+      </div>
+    </div>
+<div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Produs">
+      <div class="card-content">
+        <h3 class="card-title">Titlu Produs 1</h3>
+        <p class="card-description">Aceasta este o scurtă descriere a produsului 1, evidențiind principalele caracteristici.</p>
+      </div>
+      <div class="card-buttons">
+        <button class="buy-button">Cumpără</button>
+        <button class="fav-button">Preferat</button>
+      </div>
+    </div>
+<div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Produs">
+      <div class="card-content">
+        <h3 class="card-title">Titlu Produs 1</h3>
+        <p class="card-description">Aceasta este o scurtă descriere a produsului 1, evidențiind principalele caracteristici.</p>
+      </div>
+      <div class="card-buttons">
+        <button class="buy-button">Cumpără</button>
+        <button class="fav-button">Preferat</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
