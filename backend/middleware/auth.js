@@ -10,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
     }
 
     const token = authHeader.split(" ")[1]
-    if(token == "") {
+    if(token == "" || token == undefined || token == null) {
         req.user = null
         next()
         return

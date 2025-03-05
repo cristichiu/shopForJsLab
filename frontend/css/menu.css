@@ -5,7 +5,7 @@
     .menu .down { display: flex; justify-content: space-around; align-items: center; padding: 1rem; background: var(--color-menu-soft); }
         .menu .down input { width: clamp(200px, 60vw, 900px); background: transparent; padding: .5rem 1rem; border: 1px solid white; color: var(--color-text) } 
         .menu .down div, .menu .down a { display: flex; align-items: center }
-            .menu .down .icons { display: flex; gap: 1rem; }
+            .menu .down .icons { display: flex; gap: 1rem; align-items: center; justify-content: center; }
             .menu .down .upMenu { display: none }
 @media (max-width: 650px) {
     .menu .up .auth { display: none }

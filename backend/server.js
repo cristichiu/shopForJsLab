@@ -6,7 +6,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const graphqlSchema = require("./module/graphqlSchema.js")
-const graphqlRoot = require("./rootValue/index.js")(prisma)
+const graphqlRoot = require("./rootValue/index.js")
 const authMiddleware = require("./middleware/auth.js")
 const upload = require("./module/multer.js")
 
@@ -28,8 +28,9 @@ app.post('/uploads', upload.array('images', 5), async (req, res) => {
 app.use('/graphql', graphqlHTTP((req) => ({
     schema: graphqlSchema,
     rootValue: graphqlRoot,
-    context: { user: req.user },
+    context: { user: req.user, prisma },
     graphiql: true,
+    methods: ['GET', 'POST'],
 })));
 
 app.use("/test", (req, res) => {

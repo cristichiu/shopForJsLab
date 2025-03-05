@@ -2,7 +2,32 @@ const params = new URLSearchParams(window.location.search);
 const authMethod = params.get("auth"); // Ex: ?cheie=valoare
 const user_interface = document.getElementById("user-interface")
 
-const loginHTML = () => {
+function logout() {
+    document.cookie = `authToken=`
+    window.location.reload();
+}
+
+const verifyAuthUser = async () => {
+    const user = await axios.post('http://localhost:5000/graphql', {
+        query: `
+            query {
+                user {
+                    username
+                }
+            }`
+    })
+    if(user.data.data.user != null) return `
+<div class="authContainer">
+    <div>Salut ${user.data.data.user.username}</div>
+    <button onclick="logout()" id="logoutButton">logout</button>
+</div>
+`
+    return 0;
+}
+
+const loginHTML = async () => {
+    const verify = await verifyAuthUser()
+    if(verify) return verify
     return `
 <div class="authContainer">
     <div>Login</div>
@@ -14,12 +39,14 @@ const loginHTML = () => {
     </div>
     <div id="loginButton" class="authButton" onclick="loginMethod()">Login</div>
     <div id="authError"></div>
-    <div class="register">Register</div>
+    <a href="./auth.html?auth=register" class="login">Register</a>
 </div>
 `
 }
 
-const registerHTML = () => {
+const registerHTML = async () => {
+    const verify = await verifyAuthUser()
+    if(verify) return verify
     return `
 <div class="authContainer">
     <div>Register</div>
@@ -33,17 +60,23 @@ const registerHTML = () => {
     </div>
     <div id="registerButton" class="authButton" onclick="registerMethod()">register</div>
     <div id="authError"></div>
-    <div class="login">Login</div>
+    <a href="./auth.html?auth=login" class="login">Login</a>
 </div>
 `
 }
 
-user_interface.innerHTML = authMethod == "register" ? registerHTML() : loginHTML()
-
-const username = document.getElementById("username")
-const password = document.getElementById("password")
-const verifyPass = document.getElementById("verifyPass")
-const authError = document.getElementById("authError") 
+let username = document.getElementById("username")
+let password = document.getElementById("password")
+let verifyPass = document.getElementById("verifyPass")
+let authError = document.getElementById("authError") 
+async function displayAuth() {
+    user_interface.innerHTML = authMethod == "register" ? await registerHTML() : await loginHTML()
+    username = document.getElementById("username")
+    password = document.getElementById("password")
+    verifyPass = document.getElementById("verifyPass")
+    authError = document.getElementById("authError") 
+}
+displayAuth()
 
 function registerMethod() {
     if(username.value == "" || password.value == "" || verifyPass.value == "") {
@@ -66,6 +99,7 @@ function registerMethod() {
             return
         }
         document.cookie = `authToken=${response.data.data.register.token}`
+        window.location.reload();
     }).catch(error => console.error('Eroare:', error.response ? error.response.data : error));
 }
 
@@ -86,5 +120,6 @@ function loginMethod() {
             return
         }
         document.cookie = `authToken=${response.data.data.login.token}`
+        window.location.reload();
     }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
 }

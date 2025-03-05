@@ -1,25 +1,25 @@
 const menuHtml = () => {
     return `
 <div class="up">
-    <div class="logo">777</div>
+    <a href="./produse.html" class="logo">777</a>
     <div class="links">
         <a href="./home.html">home</a>
         <a href="./produse.html">produse</a>
-        <a href="cos.html">cos</a>
+        <a href="./cos.html">coș</a>
     </div>
     <div class="auth" id="authContext">
-        <div>Login</div>
+        <a href="./auth.html?auth=login">Login</a>
     </div>
 </div>
 <div class="down">
     <div class="upMenu">
         <ion-icon name="filter-outline"></ion-icon>
     </div>
-    <input placeholder="Search" />
-    <div class="icons">
-        <ion-icon name="person-outline"></ion-icon>
-        <ion-icon name="heart-outline"></ion-icon>
-        <ion-icon name="cart-outline"></ion-icon>
+    <input placeholder="Search" id="searchBar"/>
+    <div class="icons" id="menuIcons">
+        <a href="./auth.html?auth=login"><ion-icon name="person-outline"></ion-icon></a>
+        <a href="./preferate.html"><ion-icon name="heart-outline"></ion-icon></a>
+        <a href="./cos.html"><ion-icon name="cart-outline"></ion-icon></a>
     </div>
 </div>
 `
@@ -38,5 +38,5 @@ axios.post('http://localhost:5000/graphql', {
         }`
 }).then(response => {
     if(response.data.data.user == null) return
-    authContext.innerHTML = response.data.data.user.username
+    authContext.innerHTML = `<a href="./auth.html">${response.data.data.user.username}</a>`
 }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))

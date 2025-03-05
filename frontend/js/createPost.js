@@ -1,5 +1,6 @@
 const title = document.getElementById("title")
 const desc = document.getElementById("desc")
+const price = document.getElementById("price")
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -27,13 +28,14 @@ mutation {
     createPost(
         title: "${title.value}",
         description: "${desc.value}",
+        price: ${price.value},
         images: [${img}]
     ) {
-        id, title, images { path }
+        id, title, price, images { path }
     }
 }`
 
     axios.post('http://localhost:5000/graphql', { query }).then(response => {
-        console.log(response.data.data)
+        window.location.href = "./home.html"
     }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
 }

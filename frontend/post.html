@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="./css/menu.css" />
+        <link rel="stylesheet" href="./css/init.css" />
+        <link rel="stylesheet" href="./css/color.css" />
+        <link rel="stylesheet" href="./css/post.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./js/axiosSet.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <script defer src="./js/menu.js"></script>
+        <script defer src="./js/post.js"></script>
+    </head>
+    <body>
+        <div class="menu"></div>
+        <div id="user-interface">
+            <div class="product-details">
+                <div class="product-images">
+                    <div class="slider">
+                        <!-- Image Slideshow -->
+                        <div class="slides">
+                            <img src="path_to_image_1.jpg" alt="Product Image 1">
+                            <img src="path_to_image_2.jpg" alt="Product Image 2">
+                            <img src="path_to_image_3.jpg" alt="Product Image 3">
+                        </div>
+                        <!-- Slider Controls -->
+                        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h1 class="product-title">Product Title</h1>
+                    <p class="product-description">Product Description...</p>
+                    <p class="product-price">$10.12</p>
+                    <p class="likes-count">Likes: 50</p>
+
+                    <div class="user-info">
+                        <p class="username">By: <span>User's Name</span></p>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>
