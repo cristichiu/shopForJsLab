@@ -1,23 +1,11 @@
-axios.post('http://localhost:5000/graphql', {
-    query: `
-        query {
-            userPosts {
-                id, title, description, price, cart { post { id } }, likes { post { id } } images { path }
-            }
-        }`
-}).then(response => {
+const homePostsQuery = `query { userPosts { id, title, description, price, cart { postId }, likes { postId } images { path } } }`
+axios.get(`http://localhost:5000/graphql?query=${homePostsQuery}`).then(response => {
     if(response.data.data.userPosts == null) return
     posts = response.data.data.userPosts
     displayPosts(posts, "home")
 }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
-axios.post('http://localhost:5000/graphql', {
-    query: `
-        query {
-            user {
-                username
-            }
-        }`
-}).then(response => {
+const homeUserQuery = ` query { user { username } }`
+axios.get(`http://localhost:5000/graphql?query=${homeUserQuery}`).then(response => {
     if(response.data.data.user == null) {
         const createPostButton = document.getElementById("createPostButton")
         createPostButton.style.display = "none"

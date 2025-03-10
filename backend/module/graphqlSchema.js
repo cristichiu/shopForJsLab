@@ -28,11 +28,13 @@ const schema = buildSchema(`
     }
 
     type Liked {
+        postId: Int!
         user: User!
         post: Post!
     }
     
     type Cart {
+        postId: Int!
         user: User!
         post: Post!
     }
@@ -58,6 +60,7 @@ const schema = buildSchema(`
         createCart(id: Int!): Cart
         deleteLike(id: Int!): Liked
         deleteCart(id: Int!): Cart
+        deletePost(id: Int!): Post
     }
 `);
 

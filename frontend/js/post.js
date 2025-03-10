@@ -2,7 +2,7 @@ axios.post('http://localhost:5000/graphql', {
     query: `
         query {
             getPost(id: 1) {
-                user { username }, likes { post { id } }, description, price, title, images { path }
+                user { username }, likes { postId }, description, price, title, images { path }
             }
         }`
 }).then(response => {

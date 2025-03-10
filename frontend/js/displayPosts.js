@@ -1,5 +1,5 @@
 const user_interface = document.getElementById("user-interface")
-const serachBar = document.getElementById("searchBar")
+const searchBar = document.getElementById("searchBar")
 let posts = []
 function displayPosts(postsP, type="default") {
     user_interface.innerHTML = ""
@@ -9,6 +9,7 @@ function displayPosts(postsP, type="default") {
             case "home": { user_interface.innerText = "Nu ai produse adaugate."; break; }
             case "produse": { user_interface.innerText = "Nu sunt produse."; break; }
             case "preferate": { user_interface.innerText = "Nu ai produse preferate."; break; }
+            case "search": { user_interface.innerText = "Nu s-au gasit produsele."; break; }
             default: { user_interface.innerText = "Nu ai produse."; break; }
         }
     }
@@ -23,16 +24,15 @@ function displayPosts(postsP, type="default") {
     <p class="card-price">${post.price.replace(".", ",")} LEI</p>
 </div>
 <div class="card-buttons">
-    ${post.cart == null || post.cart.length <= 0 ? `<button class="cart-button" onclick="addCart(event, ${post.id}, '${type}')">Adaugă în coș</button>` : `<button class="cart-button" onclick="removeCart(event, ${post.id}, '${type}')">Scoate din coș</button>`}
-    ${post.likes == null || post.likes.length <= 0 ? `<button class="fav-button" onclick="addFav(event, ${post.id}, '${type}')">Preferat</button>` : `<button class="fav-button" onclick="removeFav(event, ${post.id}, '${type}')">Scoate din preferat</button>`}
+    ${window.location.pathname == "/home.html" ? `<button class="cart-button" onclick="deletePost(event, ${post.id}, '${type}')">Șterge produsul</button>` : `${post.cart == null || post.cart.length <= 0 ? `<button class="cart-button" onclick="addCart(event, ${post.id}, '${type}')">Adaugă în coș</button>` : `<button class="cart-button" onclick="removeCart(event, ${post.id}, '${type}')">Scoate din coș</button>`} ${post.likes == null || post.likes.length <= 0 ? `<button class="fav-button" onclick="addFav(event, ${post.id}, '${type}')">Preferat</button>` : `<button class="fav-button" onclick="removeFav(event, ${post.id}, '${type}')">Scoate din preferat</button>`}`}
 </div>
 `
         user_interface.insertBefore(product, user_interface.firstChild)
     })
 }
-searchBar.addEventListener("input", (event) => {
+searchBar.addEventListener("input", () => {
     let filteredPosts = posts.filter(post => post.title.includes(searchBar.value))
-    displayPosts(filteredPosts)
+    displayPosts(filteredPosts, "search")
 })
 
 function addCart(event, id, type) {
@@ -98,5 +98,19 @@ function removeFav(event, id, type) {
         if(type == "preferate") {
             event.target.closest('.card').remove()
         }
+    }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
+}
+
+function deletePost(event, id, type) {
+    axios.post('http://localhost:5000/graphql', {
+        query: `
+            mutation {
+                deletePost (id: ${id}) {
+                    id
+                }
+            }`
+    }).then(response => {
+        if(response.data.data.deletePost == null) return
+        event.target.closest('.card').remove()
     }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
 }

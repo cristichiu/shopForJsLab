@@ -31,6 +31,10 @@ app.use('/graphql', graphqlHTTP((req) => ({
     context: { user: req.user, prisma },
     graphiql: true,
     methods: ['GET', 'POST'],
+    // customFormatErrorFn: (error) => {
+    //     console.log('Eroare GraphQL:', error);
+    //     return error;
+    // }
 })));
 
 app.use("/test", (req, res) => {

@@ -36,4 +36,12 @@ module.exports = {
             include: { images: true }
         })
     },
+    async deletePost ({ id }, { user, prisma }) {
+        if(!user) return null
+        return await prisma.post.delete({
+            where: {
+                id, userId: user.id
+            }
+        })
+    }
 }

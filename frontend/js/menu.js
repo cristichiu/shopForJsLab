@@ -29,14 +29,8 @@ menu.innerHTML = menuHtml()
 
 const authContext = document.getElementById("authContext")
 
-axios.post('http://localhost:5000/graphql', {
-    query: `
-        query {
-            user {
-                username
-            }
-        }`
-}).then(response => {
+let menuQuery = `query { user { username } }`
+axios.get(`http://localhost:5000/graphql?query=${menuQuery}`).then(response => {
     if(response.data.data.user == null) return
     authContext.innerHTML = `<a href="./auth.html">${response.data.data.user.username}</a>`
 }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
