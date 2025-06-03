@@ -37,7 +37,7 @@ app.use('/graphql', graphqlHTTP((req) => ({
     // }
 })));
 
-app.use("/test", (req, res) => {
+app.use("/test", (req) => {
     console.log(req)
 })
 

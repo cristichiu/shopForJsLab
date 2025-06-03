@@ -1,6 +1,7 @@
 const title = document.getElementById("title")
 const desc = document.getElementById("desc")
 const price = document.getElementById("price")
+const postError = document.getElementById("postError")
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -15,6 +16,22 @@ async function createPost() {
     const files = document.getElementById("images").files;
     for (let i = 0; i < files.length; i++) {
         formData.append("images", files[i]);
+    }
+    if(title.value == "") {
+        postError.innerText = "Titlu lipseste."
+        return
+    }
+    if(desc.value == "") {
+        postError.innerText = "Descrierea lipseste."
+        return
+    }
+    if(price.value == "") {
+        postError.innerText = "Pretul lipseste."
+        return
+    }
+    if(files.length <= 0) {
+        postError.innerText = "Trebuie sa adaugi cel putin o poză."
+        return
     }
 
     const response = await axios.post("http://localhost:5000/uploads", formData, {
@@ -35,7 +52,7 @@ mutation {
     }
 }`
 
-    axios.post('http://localhost:5000/graphql', { query }).then(response => {
+    axios.post('http://localhost:5000/graphql', { query }).then(() => {
         window.location.href = "./home.html"
     }).catch(error => console.error('Eroare:', error.response ? error.response.data : error))
 }

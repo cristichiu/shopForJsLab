@@ -28,12 +28,14 @@ const schema = buildSchema(`
     }
 
     type Liked {
+        userId: Int!
         postId: Int!
         user: User!
         post: Post!
     }
     
     type Cart {
+        userId: Int!
         postId: Int!
         user: User!
         post: Post!

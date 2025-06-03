@@ -18,7 +18,7 @@ function displayPosts(postsP, type="default") {
         const product = document.createElement("div")
         product.classList.add("card")
         product.innerHTML = `
-<img src="http://localhost:5000/uploads/${post.images[0].path}" alt="${post.title}">
+<a href="./post.html?post=${post.id}"><img src="http://localhost:5000/uploads/${post.images[0].path}" alt="${post.title}"></a>
 <div class="card-content">
     <h3 class="card-title">${post.title}</h3>
     <p class="card-price">${post.price.replace(".", ",")} LEI</p>

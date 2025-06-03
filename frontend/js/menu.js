@@ -3,7 +3,7 @@ const menuHtml = () => {
 <div class="up">
     <a href="./produse.html" class="logo">777</a>
     <div class="links">
-        <a href="./home.html">home</a>
+        <a href="./home.html">Acasă</a>
         <a href="./produse.html">produse</a>
         <a href="./cos.html">coș</a>
     </div>

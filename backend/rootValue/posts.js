@@ -16,12 +16,10 @@ module.exports = {
         })
     },
     async getPost ({ id }, { user, prisma }) {
-        let t = await prisma.post.findUnique({
+        return await prisma.post.findUnique({
             where: { id },
-            include: { images: true, likes: true, user: true }
+            include: { images: true, likes: true, user: true, cart: true }
         })
-        console.log(t)
-        return t
     },
     async createPost ({ title, description, images, price }, { user, prisma }) {
         if(!user) return null
